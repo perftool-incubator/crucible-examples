@@ -1,0 +1,53 @@
+[
+    [
+        { "arg": "test-type", "val": "stream" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "65536" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "2" }
+    ],
+    [
+        { "arg": "test-type", "val": "stream" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "16384" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "4" }
+    ],
+    [
+        { "arg": "test-type", "val": "stream" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "256" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "1" }
+    ],
+    [
+        { "arg": "test-type", "val": "rr" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "64" },
+        { "arg": "wsize", "val": "64" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "1" }
+    ],
+    [
+        { "arg": "test-type", "val": "rr" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "64" },
+        { "arg": "wsize", "val": "1024" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "1" }
+    ],
+    [
+        { "arg": "test-type", "val": "rr" },
+        { "arg": "server-ifname", "val": "thisIfname" },
+        { "arg": "wsize", "val": "64" },
+        { "arg": "wsize", "val": "16384" },
+        { "arg": "duration", "val": "60" },
+        { "arg": "protocol", "val": "tcp" },
+        { "arg": "nthreads", "val": "1" }
+    ],
+]
