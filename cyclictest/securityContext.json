@@ -1,0 +1,6 @@
+"securityContext": {
+  "privileged": true,
+  "capabilities": {
+    "add": [ "IPC_LOCK", "SYS_ADMIN", "SYS_RAWIO" ]
+  }
+}
