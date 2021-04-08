@@ -27,6 +27,10 @@ samples=3 # Ideally use at least 3 samples for each benchmark iteration.
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
 
+benchmark_config_file="multiplex_input.json" # clone https://github.com/perftool-incubator/multiplex.git
+                                             # copy multiplex.py to this directory
+                                             # see uperf-multiplex-example.json for an example config file
+
 # Variables for ocp/k8s environments
 ####################################
 num_cpus=40  # Number of *available* cpus on each of the workers.
@@ -108,10 +112,10 @@ else
     anno_opt=""
 fi
 
+./multiplex.py --input $benchmark_config_file > bench-params.json
 
 
 for num_pods in $scale_up_factor; do
-    sed -e s/thisIfname/$server_ifname/ bench-params.template >bench-params.json
     num_clients=`echo "$num_pods * $scale_out_factor" | bc`
     num_servers=$num_clients
     if [ "$topo" != "interhost" ]; then # Any test involving ocp/k8s
