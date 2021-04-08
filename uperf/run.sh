@@ -112,8 +112,6 @@ else
     anno_opt=""
 fi
 
-./multiplex.py --input $benchmark_config_file > bench-params.json
-
 
 for num_pods in $scale_up_factor; do
     num_clients=`echo "$num_pods * $scale_out_factor" | bc`
@@ -217,5 +215,5 @@ for num_pods in $scale_up_factor; do
     if [ ! -z "$other_tags" ]; then
         tags+="other_tags"
     fi
-    crucible run uperf --tags $tags --num-samples=$samples $endpoint_opt
+    crucible run uperf --mv-params $benchmark_config_file --tags $tags --num-samples=$samples $endpoint_opt
 done
