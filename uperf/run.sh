@@ -27,6 +27,8 @@ samples=3 # Ideally use at least 3 samples for each benchmark iteration.
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
 
+benchmark_config_file="uperf-multiplex-example.json"
+
 # Variables for ocp/k8s environments
 ####################################
 num_cpus=40  # Number of *available* cpus on each of the workers.
@@ -109,9 +111,7 @@ else
 fi
 
 
-
 for num_pods in $scale_up_factor; do
-    sed -e s/thisIfname/$server_ifname/ bench-params.template >bench-params.json
     num_clients=`echo "$num_pods * $scale_out_factor" | bc`
     num_servers=$num_clients
     if [ "$topo" != "interhost" ]; then # Any test involving ocp/k8s
@@ -213,5 +213,5 @@ for num_pods in $scale_up_factor; do
     if [ ! -z "$other_tags" ]; then
         tags+="other_tags"
     fi
-    crucible run uperf --tags $tags --num-samples=$samples $endpoint_opt
+    crucible run uperf --mv-params $benchmark_config_file --tags $tags --num-samples=$samples $endpoint_opt
 done
