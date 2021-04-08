@@ -15,13 +15,14 @@ scale_out_factor=1   # Determines the number of hosts/nodes that will get used
                  #  pods are on the same worker (no external traffic)
 userenv=stream # can be centos7, centos8, stream, rhubi8, debian, opensuse
 osruntime=pod # can be pod or kata for OCP (not yet verified for SRIOV), chroot for remotehost
-server_ifname=eth0 # Providing the server ifname (like eth0) let's crucible automatically
-                   # find the server IP and inform the client.  
+#server-ifname     # MANDATORY variable to be set in multiplex-example.json file
+                   # Providing the server ifname (like eth0) let's crucible automatically
+                   # find the server IP and inform the client.
                    # For ocp/k8s and "regular" networking, this is eth0.
                    # For ocp/k8s and SRIOV, this is typically net1.
                    # For remotehosts, you really need to inspect the hosts and decide
                    # what interface to use.
-scale_up_factor="16" # Number of client-server pairs per host/node/node-pair 
+scale_up_factor="16" # Number of client-server pairs per host/node/node-pair
 samples=3 # Ideally use at least 3 samples for each benchmark iteration.
 #user_tags= # Comma-separated list of something=value, these help you identify this run as different
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
