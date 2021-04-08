@@ -27,9 +27,7 @@ samples=3 # Ideally use at least 3 samples for each benchmark iteration.
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
 
-benchmark_config_file="multiplex_input.json" # clone https://github.com/perftool-incubator/multiplex.git
-                                             # copy multiplex.py to this directory
-                                             # see uperf-multiplex-example.json for an example config file
+benchmark_config_file="uperf-multiplex-example.json"
 
 # Variables for ocp/k8s environments
 ####################################
