@@ -112,8 +112,6 @@ else
     anno_opt=""
 fi
 
-./multiplex.py --input $benchmark_config_file > bench-params.json
-
 for num_pods in $scale_up_factor; do
     num_clients=`echo "$num_pods * $scale_out_factor" | bc`
     num_servers=$num_clients
