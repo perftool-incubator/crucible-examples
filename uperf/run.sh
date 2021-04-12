@@ -27,7 +27,9 @@ samples=3 # Ideally use at least 3 samples for each benchmark iteration.
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
 
-benchmark_config_file="uperf-multiplex-example.json"
+benchmark_config_file="uperf-multiplex-example.json" # clone https://github.com/perftool-incubator/multiplex.git
+                                             # copy multiplex.py to this directory
+                                             # see uperf-multiplex-example.json for an example config file
 
 # Variables for ocp/k8s environments
 ####################################
@@ -110,6 +112,7 @@ else
     anno_opt=""
 fi
 
+./multiplex.py --input $benchmark_config_file > bench-params.json
 
 for num_pods in $scale_up_factor; do
     num_clients=`echo "$num_pods * $scale_out_factor" | bc`
