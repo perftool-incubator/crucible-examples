@@ -1,5 +1,5 @@
 {
-    "global-options": [
+    "common": [
         {
             "name": "global",
             "params": [
@@ -12,12 +12,12 @@
     ],
     "sets": [
         [
-            {"include": "global"},
+            {"common": "global"},
             { "arg": "test-type", "vals": ["stream"] },
             { "arg": "wsize", "vals": ["64", "16384"] }
         ],
         [
-            {"include": "global"},
+            {"common": "global"},
             { "arg": "test-type", "vals": ["rr"] },
             { "arg": "wsize", "vals": ["64"] },
             { "arg": "rsize", "vals": ["1024", "16384"] }
