@@ -1,5 +1,5 @@
 # Query your Results and Metrics
-## Vocabulary
+## Glossary
 * **metric** - the tool or benchmark that gathered data
 * **metric type** - transactions, throughput, etc
 * **iteration** - a uniqe set of benchmark parameters
