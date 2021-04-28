@@ -14,7 +14,7 @@ Metrics are collected over a time range.
 ### How are the metrics Stored
 Crucible only grabs metrics that are the most granular / "broken out" metric that the tools provide. IE if a tool reports the average cpu usage, crucible doesn't collect it. Crucible Aggregates in Elastic Search.
 
-# Results
+## Results
 1. Select your run id
 2. select the time range within the run id
 3. select the sources of data that you wish, mpstat, uperf for example
