@@ -32,7 +32,8 @@ benchmark_config_file="uperf-multiplex-example.json"
 
 # Variables for ocp/k8s environments
 ####################################
-num_cpus=40  # Number of *available* cpus on each of the workers.
+num_cpus=40  # A few fewer than the number of *Allocatable* cpus on each of the workers.
+             # as reported by oc describe node/node-name
              # This affects cpu request (and limit for static qos)
              # TODO: this should be automatically calculated.
 pod_qos=burstable # static = guaranteed pod, burstable = default pos qos
