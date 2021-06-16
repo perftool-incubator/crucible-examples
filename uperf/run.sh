@@ -15,20 +15,13 @@ scale_out_factor=1   # Determines the number of hosts/nodes that will get used
                  #  pods are on the same worker (no external traffic)
 userenv=stream # can be centos7, centos8, stream, rhubi8, debian, opensuse
 osruntime=pod # can be pod or kata for OCP (not yet verified for SRIOV), chroot for remotehost
-#server-ifname     # MANDATORY variable to be set in multiplex-example.json file
-                   # Providing the server ifname (like eth0) let's crucible automatically
-                   # find the server IP and inform the client.
-                   # For ocp/k8s and "regular" networking, this is eth0.
-                   # For ocp/k8s and SRIOV, this is typically net1.
-                   # For remotehosts, you really need to inspect the hosts and decide
-                   # what interface to use.
-scale_up_factor="16" # Number of client-server pairs per host/node/node-pair
+scale_up_factor="1" # Number of client-server pairs per host/node/node-pair
 samples=3 # Ideally use at least 3 samples for each benchmark iteration.
+max_failures=5 # After this many failed samples the run will quit
 #user_tags= # Comma-separated list of something=value, these help you identify this run as different
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
-
-benchmark_config_file="uperf-multiplex-example.json"
+mv_params_file="uperf-mv-params.json" # All benchmark-iterations are built from this file
 
 # Variables for ocp/k8s environments
 ####################################
@@ -37,7 +30,7 @@ num_cpus=40  # A few fewer than the number of *Allocatable* cpus on each of the 
              # This affects cpu request (and limit for static qos)
              # TODO: this should be automatically calculated.
 pod_qos=burstable # static = guaranteed pod, burstable = default pos qos
-ocphost=admin-host.earth.com # must be able to ssh without password prompt
+ocphost=admin-host.domain # must be able to ssh without password prompt
 k8susr=kni # Might be "root" or "kni" for some installations
   # Use for SRIOV or comment out for default network
 #annotations=`/bin/pwd`/sriov-annotations.json # Use for SRIOV or comment out for default network
@@ -128,7 +121,6 @@ for num_pods in $scale_up_factor; do
         else
             nodes_per_client_server=1
         fi
-        echo min_worker_nodes
         min_worker_nodes=`echo "$scale_out_factor * $nodes_per_client_server" | bc`
         if [ ${#workers[@]} -lt $min_worker_nodes ]; then
             echo "Need at least $min_worker_nodes to run tests, and this cluster only has ${#workers[@]}"
@@ -179,7 +171,7 @@ for num_pods in $scale_up_factor; do
         endpoint_opt="--endpoint k8s,user:$k8susr,host:$ocphost"
         endpoint_opt+=",${node_selector}"
         endpoint_opt+=",userenv:$userenv"
-        endpoint_opt+=",resources:$resource_file"
+        endpoint_opt+=",resources:default:$resource_file"
         endpoint_opt+=",osruntime:${osruntime}"
         endpoint_opt+="$anno_opt"
         endpoint_opt+="${runtimeClassNameOpt}"
@@ -214,5 +206,5 @@ for num_pods in $scale_up_factor; do
     if [ ! -z "$other_tags" ]; then
         tags+="other_tags"
     fi
-    crucible run uperf --mv-params $benchmark_config_file --tags $tags --num-samples=$samples $endpoint_opt
+    crucible run uperf --tags $tags --mv-params $mv_params_file --num-samples=$samples --max-sample-failures=$max_failures $endpoint_opt
 done
