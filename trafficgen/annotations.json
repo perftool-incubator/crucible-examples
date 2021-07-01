@@ -1,0 +1,5 @@
+"annotations": {
+  "k8s.v1.cni.cncf.io/networks": "sriov-columbiaville-b-pod, sriov-columbiaville-a-pod",
+  "irq-load-balancing.crio.io": "disable",
+  "cpu-quota.crio.io": "disable"
+}
