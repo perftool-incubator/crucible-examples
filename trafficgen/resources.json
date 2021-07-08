@@ -1,0 +1,12 @@
+"resources": {
+    "requests": {
+        "cpu": "14",
+        "memory": "1000Mi",
+        "hugepages-1Gi": "4Gi"
+    },
+    "limits": {
+        "cpu": "14",
+        "memory": "1000Mi",
+        "hugepages-1Gi": "4Gi"
+    }
+}

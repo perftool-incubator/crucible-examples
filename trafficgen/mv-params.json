@@ -1,0 +1,37 @@
+{
+    "global-options": [
+        {
+            "name": "global",
+            "params": [
+                { "arg": "active-devices", "vals": [ "0000:5e:00.0,0000:5e:00.1,0000:3b:00.0,0000:3b:00.1,0000:86:00.0,0000:86:00.1,0000:af:00.0,0000:af:00.1" ], "role": "client" },
+                { "arg": "devices", "vals": [ "0000:5e:00.0,0000:5e:00.1,0000:3b:00.0,0000:3b:00.1,0000:86:00.0,0000:86:00.1,0000:af:00.0,0000:af:00.1" ], "role": "client" },
+                { "arg": "devices", "vals": [ "VAR:PCIDEVICE_OPENSHIFT_IO_COLUMBIAVILLEAPOD,VAR:PCIDEVICE_OPENSHIFT_IO_COLUMBIAVILLEBPOD" ], "role": "server" },
+                { "arg": "use-src-mac-flows", "vals": [ "1" ], "role": "client" },
+                { "arg": "use-dst-mac-flows", "vals": [ "1" ], "role": "client" },
+                { "arg": "num-flows", "vals": [ "1024" ], "role": "client" },
+                { "arg": "rate-unit", "vals": [ "%" ], "role": "client" },
+                { "arg": "rate", "vals": [ "100" ], "role": "client" },
+                { "arg": "validation-runtime", "vals": [ "60" ], "role": "client" },
+                { "arg": "testpmd-forward-mode", "vals": [ "io" ], "role": "server" },
+                { "arg": "testpmd-queues", "vals": [ "1"], "role": "server" },
+                { "arg": "testpmd-smt", "vals": [ "on" ], "role": "server" },
+                { "arg": "testpmd-mtu", "vals": [ "9000" ], "role": "server" },
+                { "arg": "testpmd-descriptors", "vals": [ "4096" ], "role": "server" },
+                { "arg": "one-shot", "vals": [ "0" ], "role": "client" },
+                { "arg": "traffic-direction", "vals": [ "bidirectional" ], "role": "client" },
+                { "arg": "warmup-trial", "vals": [ "OFF" ], "role": "client" },
+                { "arg": "rate-tolerance-failure", "vals": [ "fail" ], "role": "client" },
+                { "arg": "send-teaching-warmup", "vals": [ "ON" ], "role": "client" },
+                { "arg": "send-teaching-measurement", "vals": [ "ON" ], "role": "client" }
+            ]
+        }
+    ],
+    "sets": [
+        {
+            "include": "global",
+            "params": [
+                { "arg": "frame-size", "vals": [ "64", "256", "1024", "4096", "8192" ], "role": "client" }
+            ]
+        }
+    ]
+}
