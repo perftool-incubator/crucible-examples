@@ -1,0 +1,6 @@
+"volumeMounts": [
+  { "mountPath": "/dev/hugepages", "name": "hugepage" },
+  { "mountPath": "/var/run/dpdk", "name": "varrun" }, 
+  { "mountPath": "/tmp/opt",         "name": "opt" }
+]
+
