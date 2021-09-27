@@ -7,7 +7,7 @@ In the current form, an Intel FlexRAN release comprises of the L1 source code, t
 interface to the hardware-assisted FEC PCI cards i.e N3000 or ACC100 cards, and the Testmac (the L2 test harness).
 
 ## Limitations
-Comparing to other crucible benchmarks i.e. uperf, fio etc, the crucible FlexRAN benchmark in the surrect state has several
+Comparing to other crucible benchmarks i.e. uperf, fio etc, the crucible FlexRAN benchmark in the current state has several
 limitations and/or extra prerequisites.
 
 - FlexRAN S/W must be prebuilt outside of crucible workshop
@@ -21,7 +21,7 @@ limitations and/or extra prerequisites.
 
 	As mentioned above, a FlexRAN release comes with S/W in source. One must have a mean (Intel contact) to obtain a FlexRAN release.
 In addition, to compile FlexRAN, one must use the ICC compiler which requires a license itself. Hence the artifacts of the build
-are not public accessed deliverables. Because of these unsettling issues, we keep the FlexRAN build process out of crucible workshop.
+are not public deliverables. Because of these unsettling issues, we keep the FlexRAN build process out of crucible workshop.
 
 2. Setup the OCP cluster to host FlexRAN
 
@@ -58,13 +58,13 @@ A 'bash run.sh' will kick off 3 iterations:
 Let us first explore the configuration files.
 
 #### annotations.json
-For configuring low-latency app. This file should not be changed.
+For configuring low-latency app. No customization here.
 
 #### resources.json
 FlexRAN L1 has 5 threadds. and Testmac has 4. Currently the helper script expects a minimum of 9 cores and automatically pin the first 9 cores to those 9 threads. The script will error out if detecting less than 9 cores being allocated to the pod.
 
 #### securityContext.json
-No changes.
+No customization.
 
 #### volumes.json and volumeMounts.json
 These two files set up hugepage and host mount. No customization
@@ -79,9 +79,9 @@ In manual mode, one can initiate tests from the Testmac console.
 
 For example
 
-	TESTNMAC> run 2 0 5 1001
+	TESTMAC> run 2 0 5 1001
     
-In a script mode, one can invoke Testmac with the TESTFILE env specifying the test config. For example:
+In a script mode, one can invoke Testmac with the TESTFILE env specifying the test config file. For example:
     
     $ TESTFILE=/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg l2.sh
 
@@ -109,13 +109,13 @@ To specify a script run:
                 { "arg": "log-test", "vals": ["FD_12001"], "role": "client" }
             ]
 
-- vals is an array. For each value in the array, crucible run a test iteration.
+- vals is an array. For each value in the array, crucible orchestratrates one test iteration.
 
- - fec-mode: valid value are "hw" and "sw" - As mentioned previously, flexran can run with or w/o FEC hardware. When fec-mode value is "sw", the L1 invokes its s/w-emulated method for the FEC function.
+ - fec-mode: valid values are "hw" and "sw" - As mentioned previously, flexran can run with or w/o FEC hardware. When fec-mode value is "sw", the L1 invokes its s/w-emulated method to perform the FEC function.
 
-- 'useN' and 'test-file' are used to specify manual-mode and script-mode
+- 'useN' and 'test-file' support manual-mode and script-mode accordingly.
 
-- log-test: when we invoke 'runall' or  script mode "TESTFIEL=xxx ./l2.sh", the workload runs multiple tests. Currently the helper script only indexes one metric of one test. The 'log-test'  variable specifis that test. The vaild values of log-test are the test names i.e FD_1001.
+- log-test: when we invoke 'runall' or script mode, "TESTFIEL=xxx ./l2.sh", the benchmark runs multiple tests. Currently the helper script only indexes one metric of one test. The 'log-test' variable specifies that test. The valid values for log-test are the test names i.e FD_1001.
     
  
 # Crucible Run Results
