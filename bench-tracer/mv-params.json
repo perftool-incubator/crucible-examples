@@ -1,0 +1,20 @@
+{
+  "global-options": [
+    {
+      "name": "global",
+      "params": [
+        { "arg": "duration", "vals": [ "10" ], "role": "client" },
+        { "arg": "tracer", "vals": [ "osnoise" ], "role": "client" },
+        { "arg": "us_single", "vals": [ "50" ], "role": "client" },
+        { "arg": "us_total", "vals": [ "200" ], "role": "client" },
+        { "arg": "events", "vals": [ "osnoise,nmi_noise,thread_noise,irq_noise" ] },
+        { "arg": "period", "vals": [ "1000000" ], "role": "client" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "global"
+    }
+  ]
+}
