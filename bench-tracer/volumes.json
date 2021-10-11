@@ -1,0 +1,3 @@
+"volumes": [
+ { "name": "tracing", "hostPath": { "path": "/sys/kernel/debug/tracing/" } }
+]
