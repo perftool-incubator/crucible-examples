@@ -12,7 +12,7 @@ for target in ${targets}; do
     case "${target}" in
 	"k8s")
 	    remote_host=xxx.yyy.zzz
-	    endpoint_arg+=" --endpoint k8s,host:${remote_host},user:root,client:${csid},cpu-partitioning:client-${csid}:1,volumeMounts:client-1:`/bin/pwd`/volumeMounts.json,volumes:client-1:`/bin/pwd`/volumes.json,resources:client-${csid}:`/bin/pwd`/resource.json,nodeSelector:client-${csid}:`/bin/pwd`/nodeSelector.json,securityContext:client-${csid}:`/bin/pwd`/securityContext.json,masters-tool-collect:0"
+	    endpoint_arg+=" --endpoint k8s,host:${remote_host},user:root,client:${csid},cpu-partitioning:client-${csid}:1,volumeMounts:client-${csid}:`/bin/pwd`/volumeMounts.json,volumes:client-${csid}:`/bin/pwd`/volumes.json,resources:client-${csid}:`/bin/pwd`/resource.json,nodeSelector:client-${csid}:`/bin/pwd`/nodeSelector.json,securityContext:client-${csid}:`/bin/pwd`/securityContext.json,masters-tool-collect:0"
 	    ;;
 	"rhel")
 	    remote_host=xxx.yyy.zzz
