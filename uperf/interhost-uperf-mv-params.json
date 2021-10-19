@@ -1,0 +1,33 @@
+{
+  "global-options": [
+    {
+      "name": "common-params",
+      "params": [
+        { "arg": "duration", "vals": ["90"] },
+        { "arg": "protocol", "vals": ["tcp"] },
+        { "arg": "nthreads", "vals": ["1"] },
+        { "arg": "ifname", "vals": ["ens4f0"], "role": "server", "id": "1" },
+        { "arg": "ifname", "vals": ["ens3f0"], "role": "server", "id": "2" },
+        { "arg": "ifname", "vals": ["ens4f0"], "role": "server", "id": "3" },
+        { "arg": "ifname", "vals": ["ens3f0"], "role": "server", "id": "4" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "test-type", "vals": ["stream"] },
+        { "arg": "wsize", "vals": ["16384"] }
+      ]
+    },
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "test-type", "vals": ["stream"] },
+        { "arg": "wsize", "vals": ["64"] },
+        { "arg": "rsize", "vals": ["16384"] }
+      ]
+    }
+  ]
+}
