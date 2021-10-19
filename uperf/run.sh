@@ -45,8 +45,8 @@ irq="bal" # bal by default or rrHost or <something-else> depending on what manua
 # Variables if one or more remotehost
 # endpoints are used (topo=ingress|egress|interhost)
 #####################################
-bmlhosta=perf19 # Used for topo=ingress|egress|interhost
-bmlhostb=perf21 # Used for interhost
+bmlhosta=hosta # Used for topo=ingress|egress|interhost
+bmlhostb=hostb # Used for interhost
 
 
 resource_file="`/bin/pwd`/resource.json"
