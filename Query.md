@@ -30,6 +30,6 @@ will return a value, but also provides `breakouts`, which can be thought of as m
 * `crucible get metric --run <RUN-ID> --begin <start> --end <final_time> --source mpstat --type Busy-CPU --breakout cstype,csid`
 * `crucible get metric --run <RUN-ID> --begin <start> --end <final_time> --source mpstat --type Busy-CPU --breakout cstype=worker,csid=1,package`
 
-* use `--resolution` to get the desired number of samples from the run. just like a picture you can only enhance so far before it doesn't get any clearer
+* use `--resolution=90` to get the desired number of samples from the run. just like a picture you can only enhance so far before it doesn't get any clearer. try a resolution that matches the duration of a test
 * `crucible get metric --run <RUN-ID> --begin <start> --end <final_time> --source mpstat --type Busy-CPU --breakout cstype,csid --resolution 60`
 
