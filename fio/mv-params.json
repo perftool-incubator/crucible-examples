@@ -1,0 +1,36 @@
+{
+    "global-options": [
+	{
+	    "name": "required",
+	    "params": [
+		{ "arg": "clocksource", "vals": [ "gettimeofday" ] },
+		{ "arg": "ramp_time", "vals": [ "5s" ] },
+
+		{ "arg": "unlink", "vals": [ "1" ] },
+		{ "arg": "filename", "vals": [ "/tmp/fio.foo" ] },
+		{ "arg": "runtime", "vals": [ "10s" ] },
+		{ "arg": "time_based", "vals": [ "1" ] },
+		{ "arg": "norandommap", "vals": [ "ON" ] },
+
+		{ "arg": "ioengine", "vals": [ "sync" ] },
+		{ "arg": "size", "vals": [ "10M" ] }
+	    ]
+	}
+    ],
+    "sets": [
+	{
+	    "include": "required",
+	    "params": [
+		{ "arg": "bs", "vals": [ "64K", "128K", "256K" ] },
+		{ "arg": "rw", "vals": [ "read" ] }
+	    ]
+        },
+	{
+	    "include": "required",
+	    "params": [
+		{ "arg": "bs", "vals": [ "4K", "8K" ] },
+		{ "arg": "rw", "vals": [ "randread" ] }
+	    ]
+        }
+    ]
+}
