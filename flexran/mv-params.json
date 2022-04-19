@@ -10,7 +10,7 @@
     "sets": [
         {
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
                 { "arg": "usr1", "vals": ["runall"], "role": "client" },
                 { "arg": "usr2", "vals": ["2"], "role": "client" },
                 { "arg": "usr3", "vals": ["0"], "role": "client" },
@@ -21,7 +21,7 @@
 
         {
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
                 { "arg": "usr1", "vals": ["run"], "role": "client" },
                 { "arg": "usr2", "vals": ["2"], "role": "client" },
                 { "arg": "usr3", "vals": ["0"], "role": "client" },
@@ -34,7 +34,7 @@
 
         {
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
                 { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg"], "role": "client" },
                 { "arg": "log-test", "vals": ["FD_12001"], "role": "client" }
             ]
