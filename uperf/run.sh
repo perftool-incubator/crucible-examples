@@ -4,7 +4,7 @@
 
 # Variables which apply to all test environments
 ################################################
-topo="internode" # internode = client/server pods on different nodes in ocp/k8s cluster
+topo="interhost" # internode = client/server pods on different nodes in ocp/k8s cluster
                  # intranode = client/server pods on same worker node in ocp/k8s cluster
                  # ingress = client outside (BML host or VM), server inside ocp/k8s cluster
                  # interhost = between two BML hosts/VMs, not k8s/ocp
@@ -14,10 +14,11 @@ scale_out_factor=1   # Determines the number of hosts/nodes that will get used
                  # For ingress/egress: (OCP) total workers = 1 * $scale_out_factor, where uperf client and server
                  #  pods are on the same worker (no external traffic)
 userenv=stream # can be centos7, centos8, stream, rhubi8, debian, opensuse
-osruntime=pod # can be pod or kata for OCP (not yet verified for SRIOV), chroot for remotehost
+osruntime=chroot # can be pod or kata for OCP (not yet verified for SRIOV), chroot for remotehost
 scale_up_factor="1" # Number of client-server pairs per host/node/node-pair
+interhost_dir=forward # forward, reverse, bidirec
 samples=3 # Ideally use at least 3 samples for each benchmark iteration.
-max_failures=5 # After this many failed samples the run will quit
+max_failures=3 # After this many failed samples the run will quit
 #user_tags= # Comma-separated list of something=value, these help you identify this run as different
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
@@ -179,7 +180,7 @@ for num_pods in $scale_up_factor; do
         echo "interhost"
         endpoint_opt=""
         network_type=flat
-        network_mtu=8900 # TODO: get actual mtu
+        network_mtu=1500 # TODO: get actual mtu
         rcos=na
         kernel=`ssh $bmlhosta uname -r`
     fi
@@ -194,12 +195,25 @@ for num_pods in $scale_up_factor; do
         endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhosta,server:1-$num_pods,userenv:$userenv "
     elif [ "$topo" == "interhost" ]; then
         # TODO: make work for $scale_out_factor > 1
-        endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhosta,client:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
-        endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhostb,server:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
+        if [ "$interhost_dir" == "forward" ]; then
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhosta,client:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhostb,server:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
+        elif [ "$interhost_dir" == "reverse" ]; then
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhosta,server:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhostb,client:1-$num_pods,userenv:$userenv,osruntime:$osruntime"
+        elif [ "$interhost_dir" == "bidirec" ]; then
+            odd_ids=`seq 1 2 $(($num_pods*2)) | tr '\n' '+'  | sed -e s/+$//`
+            even_ids=`seq 2 2 $(($num_pods*2)) | tr '\n' '+'  | sed -e s/+$//`
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhosta,client:$odd_ids,server:$even_ids,userenv:$userenv,osruntime:$osruntime"
+            endpoint_opt+=" --endpoint remotehost,user:root,host:$bmlhostb,server:$odd_ids,client:$even_ids,userenv:$userenv,osruntime:$osruntime"
+        fi
     fi
 
     tags="sdn:$network_type,mtu:$network_mtu,rcos:$rcos,kernel:$kernel,irq:$irq,userenv:$userenv,osruntime:$osruntime"
     tags+=",topo:$topo,pods-per-worker:$num_pods,scale_out_factor:$scale_out_factor"
+    if [ "$topo" == "interhost" ]; then
+        tags+=",dir:$interhost_dir"
+    fi
     if [ "$topo" == "internode" -a "$topo" == "intranode" ]; then
         tags+=",pod_qos:$pod_qos"
     fi

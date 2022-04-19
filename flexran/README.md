@@ -73,7 +73,7 @@ These two files set up hugepage and host mount. No customization
 Can be changed to include more or less tools
 
 #### mv-params.json
-In manual mode, one can initiate tests from the Testmac console.
+Outside Crucible, one can initiate tests from the Testmac console (manual mode)
 
 	TESTMAC > run [test_type: 0-DL 1-UL 2-FD] [Numerology] [Bandwidth] [optional: test_num]
 
@@ -81,16 +81,16 @@ For example
 
 	TESTMAC> run 2 0 5 1001
     
-In a script mode, one can invoke Testmac with the TESTFILE env specifying the test config file. For example:
+Also outside Crucible, one can invoke Testmac with the TESTFILE env specifying the test config file (script mode). For example:
     
     $ TESTFILE=/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg l2.sh
 
 In above command, l2.sh is the front-end of Testmac, and 'testmac_fd_mu0_5mhz.cfg' contains a list of tests to run.
 
 #### mv-params.json, mv-params-multi.json
-implements both the manual mode and the script mode for crucible FlexRAN
+Support both the manual mode and the script mode for crucible FlexRAN
 
-To specify a manual mode run
+To synthesize manual-mode:
 
             "params": [
                 { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
@@ -98,10 +98,11 @@ To specify a manual mode run
                 { "arg": "usr2", "vals": ["2"], "role": "client" },
                 { "arg": "usr3", "vals": ["0"], "role": "client" },
                 { "arg": "usr4", "vals": ["5"], "role": "client" },
+		{ "arg": "usr5", "vals": ["1001"], "role": "client" },
                 { "arg": "log-test", "vals": ["FD_1001"], "role": "client" }
             ]
 
-To specify a script run:
+To synthesize a script-mode run:
 
             "params": [
                 { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
@@ -111,7 +112,7 @@ To specify a script run:
 
 - vals is an array. For each value in the array, crucible orchestratrates one test iteration.
 
- - fec-mode: valid values are "hw" and "sw" - As mentioned previously, flexran can run with or w/o FEC hardware. When fec-mode value is "sw", the L1 invokes its s/w-emulated method to perform the FEC function.
+- fec-mode: valid values are "hw" and "sw" - As mentioned previously, flexran can run with or w/o FEC hardware. When fec-mode value is "sw", the L1 invokes its s/w-emulated method to perform the FEC function. W/o a working h/w FEC device, be sure to only use "sw".
 
 - 'useN' and 'test-file' support manual-mode and script-mode accordingly.
 
