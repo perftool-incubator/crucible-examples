@@ -1,0 +1,28 @@
+{
+  "global-options": [
+    {
+      "name": "common-params",
+      "params": [
+        { "arg": "duration", "vals": ["10"] },
+        { "arg": "ifname", "vals": ["eth0"], "role": "server" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["tcp"] },
+        { "arg": "length", "vals": [ "16K","32K"] }
+      ]
+    },
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["udp"] },
+        { "arg": "length", "vals": [ "16K","32K"] },
+        { "arg": "passthru", "vals": ["-b1G"], "role": "client" }
+      ]
+    }
+  ]
+}
