@@ -8,13 +8,13 @@ Natively, *iperf3* is a client-server application. See *iperf3* manpage. As a *C
  5. Deploy and correlate tools results i.e. mpstat, vmstat
 
 In addition, *iperf3* benchmark also has specific features:
- 1. support several networking *models*: intranode, internode, ingress and egress
+ 1. support several networking topologies: intranode, internode, ingress and egress
  2. *scale out* the number of endpoints
  3. *scale up* the number of iperf pairs per endpoint.
     < more>
 ## Configure the benchmark
 ### Prepare a run.sh using the example run.sh by filling in:
- - mode i.e. intranode
+ - Networking topology i.e. intranode
  - endpoint details i.e  host names and login info
  - scale_up and scale_out params
  - number of samples.
