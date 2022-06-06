@@ -22,7 +22,7 @@ max_failures=1 # After this many failed samples the run will quit
 #user_tags= # Comma-separated list of something=value, these help you identify this run as different
             #  from other runs, for example:  "cloud-reservation:48,HT:off,CVE:off"
             # Note that many tags are auto-generated below
-mv_params_files=("mv-params.json mv-params-sams.json") # All benchmark-iterations are built from this file
+mv_params_files=("mv-params.json" "mv-params-sams.json") # All benchmark-iterations are built from this file
 
 # Variables for ocp/k8s environments
 ####################################
