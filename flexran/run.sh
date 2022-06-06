@@ -13,10 +13,8 @@ resources_file="`/bin/pwd`/resources.json"       # for h/w FEC, use resources-fe
 # resources_file="`/bin/pwd`/resources-fec.json"
 #annotations_file="`/bin/pwd`/annotations.json"  # for XRAN, use xran-annotations.json
 annotations_file="`/bin/pwd`/xran-annotations.json"
-#mv_file="`/bin/pwd`/mv-params.json"             # For both timer and XRAN tests, see mv-params-multi.json
-mv_file="`/bin/pwd`/mv-params-run-0-0-5-all-test.json" 
-                                                # Be sure to create those hn*cfg as they reduced-load tests
-#mv_file="`/bin/pwd`/mv-params-multi.json"
+#mv_file="`/bin/pwd`/mv-params.json"            # For both timer and XRAN tests, see mv-params-multi.json
+mv_file="`/bin/pwd`/mv-params-multi.json"       # Be sure to create those hn*cfg as they reduced-load tests
 # set the number of samples for your run
 samples=1
 
