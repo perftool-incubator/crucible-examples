@@ -11,7 +11,14 @@ In addition, *iperf3* benchmark also has specific features:
  1. support several networking topologies: intranode, internode, ingress and egress
  2. *scale out* the number of endpoints
  3. *scale up* the number of iperf pairs per endpoint.
-    < more>
+   
+   < more>
+## Drop Hunter
+
+Drop-hunter is a small feature. The drop-hunter will step IPERF tx between high and low rates while analyzing the results of each step, and binary stepping to seek the highest 0-drop Tx rate and the lowest drop tx rate. To activate drop-hunter, add the "bitrate-range" variable to the test spec in the mv-params.json. The hunter mode progresses over multiple runs with different tx rate within a single client-start/client-stop pair to eliminate overhead. Rate suffixes are KMG for Kbps,Mbps and Gbps.
+
+
+
 ## Configure the benchmark
 ### Prepare a run.sh using the example run.sh by filling in:
  - Networking topology i.e. intranode
@@ -49,9 +56,17 @@ mv-params.json examples:
 	        { "arg": "bitrate", "vals": ["5G"], "role": "client" },
 	        { "arg": "passthru", "vals": ["--reverse"], "role": "client" }
 	      ]
+	    },
+	    {
+	      "include": "common-params",
+	      "params": [
+		{ "arg": "protocol", "vals": ["udp"] },
+		{ "arg": "bitrate-range", "vals": [ "50M-400M" ] },   <=== drop hunting test
+		{ "arg": "length", "vals": [ "64" ] }
+	      ]
 	    }
 	  ]
-	}
+    }
 
 Supported test params (in mv-params.json)
 
@@ -61,6 +76,7 @@ Supported test params (in mv-params.json)
  4. **length**     - L4 PDU. see iperf3 manpage 
  5. **bitrate**    - tx rate. See iperf3 manpage. 
  6. **passthru**   - comma separated list of *iperf3*  options. e.g. "--reverse,-i2". There can be no spaces in the list. The native *iperf3* has more command line options not in the above list which may be of interests for specific test scenarios. The user can pass those params as pass-through options. The pass-through params will not be syntax checked by the benchmark, and hence it is the user's responsibility for ensuring their applicability.
+ 7. **bit-range**	- drop hunting range in KMG units
 
 ### Execute 'bash run.sh'
 
