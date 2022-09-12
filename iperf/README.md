@@ -15,8 +15,7 @@ In addition, *iperf3* benchmark also has specific features:
    < more>
 ## Drop Hunter
 
-Drop-hunter is a small feature. The drop-hunter will step IPERF tx between high and low rates while analyzing the results of each step, and binary stepping to seek the highest 0-drop Tx rate and the lowest drop tx rate. To activate drop-hunter, add the "bitrate-range" variable to the test spec in the mv-params.json. The hunter mode progresses over multiple runs with different tx rate within a single client-start/client-stop pair to eliminate overhead. Rate suffixes are KMG for Kbps,Mbps and Gbps.
-
+Drop-hunter is an add-on feature. The drop-hunter will step IPERF tx between high and low rates while analyzing the results of each step, and binary stepping to seek the highest Tx rate with acceptable drop rate. To activate drop-hunter, add the "bitrate-range" and "max-loss-pct" variables to the test spec in the mv-params.json. The hunter mode progresses over multiple runs with different tx rates within a single client-start/client-stop pair thus eliminating much of iteration start-up/shutdown overheads. Rate suffixes are KMG for Kbps,Mbps and Gbps.
 
 
 ## Configure the benchmark
@@ -70,13 +69,26 @@ mv-params.json examples:
 
 Supported test params (in mv-params.json)
 
- 1. **time**        - test duration in seconds
- 2. **protocol**  - udp or tcp
- 3. **ifname**    - server interface 
- 4. **length**     - L4 PDU. see iperf3 manpage 
- 5. **bitrate**    - tx rate. See iperf3 manpage. 
- 6. **passthru**   - comma separated list of *iperf3*  options. e.g. "--reverse,-i2". There can be no spaces in the list. The native *iperf3* has more command line options not in the above list which may be of interests for specific test scenarios. The user can pass those params as pass-through options. The pass-through params will not be syntax checked by the benchmark, and hence it is the user's responsibility for ensuring their applicability.
- 7. **bit-range**	- drop hunting range in KMG units
+ 1. **time**        - Test duration in seconds
+ 2. **protocol**  - UDP or TCP
+ 3.  **ipv**      - Default is IPv4. Valid values are: "4" and "6". Usage example:
+ ```
+ 	{ "arg": "ipv", "vals": ["6"], "role": "all" }
+ ```
+ 4. **ifname**    - Server interface 
+ 5. **length**     - L4 PDU. see iperf3 manpage 
+ 6. **bitrate**    - tx rate. See iperf3 manpage. 
+ 7. **passthru**   - Comma separated list of *iperf3*  options. e.g. "--reverse,-i2". There can be no spaces in the list. The native *iperf3* has more command line options not in the above list which may be of interests for specific test scenarios. The user can pass those params as pass-through options. The pass-through params will not be syntax checked by the benchmark, and hence it is the user's responsibility for ensuring their applicability.
+ 8. **bitrate-range**	- UDP drop hunting range in KMG units
+ 9. **max-loss-pct**    - Acceptable packet loss percentage. Default is 0 packet drop. This params is used in conjunction with **bitrate-range**. Usage example:
+ ``` 
+ 	{ "arg": "max-loss-pct", "vals": ["0.1"], "role": "client" }
+ ```
+ 10. **omit**  - Omit the first n seconds of the test, to skip past the warm-up period.
+ 11. **cpu-pin** - PIN client and server processes to a CPU on the same NUMA as the NIC. Valid value is "cpu-numa". Usage example:
+ ```
+ 	{ "arg": "cpu-pin", "vals": ["cpu-numa"], "role": "all" }
+ ```
 
 ### Execute 'bash run.sh'
 
