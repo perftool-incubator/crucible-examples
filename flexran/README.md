@@ -58,10 +58,10 @@ A 'bash run.sh' will kick off 3 iterations:
 Let us first explore the configuration files.
 
 #### annotations.json
-For configuring low-latency app. No customization here.
+For configuring low-latency app. To support XRAN, we need a pair of SRIOV VF's. See *xran-annotations.json*
 
-#### resources.json
-FlexRAN L1 has 5 threadds. and Testmac has 4. Currently the helper script expects a minimum of 9 cores and automatically pin the first 9 cores to those 9 threads. The script will error out if detecting less than 9 cores being allocated to the pod.
+#### resource.json
+FlexRAN L1 has 5 threadds. and Testmac has 4. Currently the helper script expects a minimum of 9 cores and automatically pin the first 9 cores to those 9 threads. The script will error out if detecting less than 9 cores being allocated to the pod. A H/W FEC device ACC100 is required, but in development we may run some tests (See *fec-mode* in mv-params.json) on testbed that does not have an ACC100. See *resources-fec.json* when testbed has H/W FEC.
 
 #### securityContext.json
 No customization.
@@ -87,8 +87,8 @@ Also outside Crucible, one can invoke Testmac with the TESTFILE env specifying t
 
 In above command, l2.sh is the front-end of Testmac, and 'testmac_fd_mu0_5mhz.cfg' contains a list of tests to run.
 
-#### mv-params.json
-Synthesizes both the manual-mode and the script-mode for crucible FlexRAN
+#### mv-params.json, mv-params-multi.json
+Support both the manual mode and the script mode for crucible FlexRAN
 
 To synthesize manual-mode:
 
@@ -118,6 +118,18 @@ To synthesize a script-mode run:
 
 - log-test: when we invoke 'runall' or script mode, "TESTFIEL=xxx ./l2.sh", the benchmark runs multiple tests. Currently the helper script only indexes one metric of one test. The 'log-test' variable specifies that test. The valid values for log-test are the test names i.e FD_1001.
     
+For XRAN, it needs one additional param, the *xran-devices*:
+
+            "params": [
+                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["60"], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_1001"], "role": "client" }
+            ]
+- xran-devices: contain the PCI addresses of two SRIOV VF devices that are used for fronthaul.
+- max-runtime: is optional. It specifies the maximum duration the test may take. It helps the benchmark to timeout more precisely. This param is applicable per individual test.
+
  
 # Crucible Run Results
 

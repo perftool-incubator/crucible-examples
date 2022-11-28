@@ -1,0 +1,77 @@
+{
+    "global-options": [
+        {
+            "name": "common-params",
+            "params": [
+                { "arg": "dummy", "vals": ["reserved"] }
+            ]
+        }
+    ],
+    "sets": [
+       {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["30"], "role": "client" },
+                { "arg": "usr1", "vals": ["run"], "role": "client" },
+                { "arg": "usr2", "vals": ["2"], "role": "client" },
+                { "arg": "usr3", "vals": ["0"], "role": "client" },
+                { "arg": "usr4", "vals": ["5"], "role": "client" },
+                { "arg": "usr5", "vals": ["1001"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_1001"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["60"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_12001"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["180"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/icelake-sp/hn-icxsp_mu0_20mhz_4x4_hton.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_2220"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["600"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/icelake-sp/icxsp_mu0_20mhz_4x4_hton.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_1202"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["180"], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "server" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/hn6-testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "cc-num", "vals": [ "6" ], "role": "server" },
+                { "arg": "log-test", "vals": ["FD_6220"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "max-runtime", "vals": ["180"], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "server" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "cc-num", "vals": [ "12" ], "role": "server" },
+                { "arg": "log-test", "vals": ["FD_3220"], "role": "client" }
+            ]
+        }
+
+    ]
+}

@@ -1,27 +1,17 @@
 {
     "global-options": [
         {
-            "name": "global",
+            "name": "common-params",
             "params": [
-                { "arg": "reserved", "vals": ["none"], "role": "server" }
+                { "arg": "dummy", "vals": ["reserved"] }
             ]
         }
     ],
     "sets": [
         {
+            "include": "common-params",
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
-                { "arg": "usr1", "vals": ["runall"], "role": "client" },
-                { "arg": "usr2", "vals": ["2"], "role": "client" },
-                { "arg": "usr3", "vals": ["0"], "role": "client" },
-                { "arg": "usr4", "vals": ["5"], "role": "client" },
-                { "arg": "log-test", "vals": ["FD_1001"], "role": "client" }
-            ]
-        },
-
-        {
-            "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
                 { "arg": "usr1", "vals": ["run"], "role": "client" },
                 { "arg": "usr2", "vals": ["2"], "role": "client" },
                 { "arg": "usr3", "vals": ["0"], "role": "client" },
@@ -33,10 +23,43 @@
         },
 
         {
+            "include": "common-params",
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
                 { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg"], "role": "client" },
                 { "arg": "log-test", "vals": ["FD_12001"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_10mhz.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_16010"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_20mhz.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_12226"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu1_40mhz.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_1003"], "role": "client" }
+            ]
+        },
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
+                { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu3_100mhz.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_4080"], "role": "client" }
             ]
         }
     ]

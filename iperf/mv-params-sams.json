@@ -1,0 +1,21 @@
+{
+  "global-options": [
+    {
+      "name": "common-params",
+      "params": [
+        { "arg": "ifname", "vals": ["eth0"], "role": "server" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["udp"] },
+        { "arg": "passthru", "vals": ["-V,-fm,-b2000m,-l256,-i1,-t600"], "role": "client" }
+      ]
+    }
+  ]
+}
+
+

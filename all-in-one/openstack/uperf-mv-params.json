@@ -1,0 +1,64 @@
+{
+  "global-options": [
+    {
+      "name": "common-params",
+      "params": [
+        { "arg": "duration", "vals": ["60"] },
+        { "arg": "protocol", "vals": ["tcp"] },
+        { "arg": "nthreads", "vals": ["1"] },
+        { "arg": "ifname", "vals": ["eth0"], "role": "server" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "test-type", "vals": ["stream"], "id": "17" },
+        { "arg": "wsize", "vals": ["32768"], "id": "17" },
+
+        { "arg": "test-type", "vals": ["stream"], "id": "18" },
+        { "arg": "wsize", "vals": ["512"], "id": "18" },
+        { "arg": "nthreads", "vals": ["16"], "id": "18" },
+
+        { "arg": "test-type", "vals": ["stream"], "id": "19" },
+        { "arg": "wsize", "vals": ["32768"], "id": "19" },
+
+        { "arg": "test-type", "vals": ["stream"], "id": "20" },
+        { "arg": "wsize", "vals": ["512"], "id": "20" },
+        { "arg": "nthreads", "vals": ["16"], "id": "20" },
+
+        { "arg": "test-type", "vals": ["crr"], "id": "1" },
+        { "arg": "wsize", "vals": ["512"], "id": "1" },
+        { "arg": "rsize", "vals": ["2048"], "id": "1" },
+        { "arg": "test-type", "vals": ["crr"], "id": "2" },
+        { "arg": "wsize", "vals": ["512"], "id": "2" },
+        { "arg": "rsize", "vals": ["2048"], "id": "2" },
+        { "arg": "test-type", "vals": ["crr"], "id": "3" },
+        { "arg": "wsize", "vals": ["512"], "id": "3" },
+        { "arg": "rsize", "vals": ["2048"], "id": "3" },
+        { "arg": "test-type", "vals": ["crr"], "id": "4" },
+        { "arg": "wsize", "vals": ["512"], "id": "4" },
+        { "arg": "rsize", "vals": ["2048"], "id": "4" },
+        { "arg": "test-type", "vals": ["crr"], "id": "5" },
+        { "arg": "wsize", "vals": ["512"], "id": "5" },
+        { "arg": "rsize", "vals": ["2048"], "id": "5" },
+        { "arg": "test-type", "vals": ["crr"], "id": "6" },
+        { "arg": "wsize", "vals": ["512"], "id": "6" },
+        { "arg": "rsize", "vals": ["2048"], "id": "6" },
+        { "arg": "test-type", "vals": ["crr"], "id": "7" },
+        { "arg": "wsize", "vals": ["512"], "id": "7" },
+        { "arg": "rsize", "vals": ["2048"], "id": "7" },
+        { "arg": "test-type", "vals": ["crr"], "id": "8" },
+        { "arg": "wsize", "vals": ["512"], "id": "8" },
+        { "arg": "rsize", "vals": ["2048"], "id": "8" },
+        { "arg": "test-type", "vals": ["crr"], "id": "9" },
+        { "arg": "wsize", "vals": ["512"], "id": "9" },
+        { "arg": "rsize", "vals": ["2048"], "id": "9" },
+        { "arg": "test-type", "vals": ["crr"], "id": "10" },
+        { "arg": "wsize", "vals": ["512"], "id": "10" },
+        { "arg": "rsize", "vals": ["2048"], "id": "10" }
+      ]
+    }
+  ]
+}

@@ -2,11 +2,13 @@
     "requests": {
         "cpu": "32",
         "memory": "32Gi",
-        "hugepages-1Gi": "16Gi"
+        "hugepages-1Gi": "16Gi",
+        intel.com/intel_fec_5g: '1'
     },
     "limits": {
         "cpu": "32",
         "memory": "32Gi",
-        "hugepages-1Gi": "16Gi"
+        "hugepages-1Gi": "16Gi",
+        intel.com/intel_fec_5g: '1'
     }
 }

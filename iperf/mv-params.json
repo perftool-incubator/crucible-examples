@@ -1,0 +1,36 @@
+{
+  "global-options": [
+    {
+      "name": "common-params",
+      "params": [
+        { "arg": "time", "vals": ["10"] },
+        { "arg": "length", "vals": [ "16K"] },
+        { "arg": "ifname", "vals": ["eth0"], "role": "server" }
+      ]
+    }
+  ],
+  "sets": [
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["tcp"] }
+      ]
+    },
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["tcp"] },
+        { "arg": "passthru", "vals": ["--reverse"], "role": "client" }
+      ]
+    },
+    {
+      "include": "common-params",
+      "params": [
+        { "arg": "protocol", "vals": ["udp"] },
+        { "arg": "bitrate", "vals": ["5G", "10G", "0"], "role": "client" }
+      ]
+    }
+  ]
+}
+
+
