@@ -1,0 +1,5 @@
+"annotations": {
+  "irq-load-balancing.crio.io": "disable",
+  "cpu-quota.crio.io": "disable",
+  "k8s.v1.cni.cncf.io/networks": "[ { \"name\": \"sriov-vlan10\", \"mac\": \"00:11:22:33:00:00\" }, { \"name\": \"sriov-vlan20\", \"mac\": \"00:11:22:33:00:10\" }]"
+}
