@@ -1,0 +1,22 @@
+{
+    "global-options": [
+        {
+            "name": "common-params",
+            "params": [
+                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
+                { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "all" }
+            ]
+        }
+    ],
+    "sets": [
+        {
+            "include": "common-params",
+            "params": [
+                { "arg": "duration", "vals": ["360"], "role": "client" },
+                { "arg": "cc-num", "vals": [ "12" ], "role": "server" },
+                { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "log-test", "vals": ["FD_12220"], "role": "client" }
+            ]
+        }
+    ]
+}
