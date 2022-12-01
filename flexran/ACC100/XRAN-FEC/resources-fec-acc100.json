@@ -1,0 +1,14 @@
+"resources": {
+    "requests": {
+        "cpu": "32",
+        "memory": "32Gi",
+        "hugepages-1Gi": "32Gi",
+        "intel.com/intel_fec_acc100": "1"
+    },
+    "limits": {
+        "cpu": "32",
+        "memory": "32Gi",
+        "hugepages-1Gi": "32Gi",
+        "intel.com/intel_fec_acc100": "1"
+    }
+}

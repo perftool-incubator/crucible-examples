@@ -1,0 +1,8 @@
+v22.03
+------
+Status
+PASS: { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/custom/3-cells-test.cfg"], "role": "client" },
+PASS: { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/custom/4-cells-test.cfg"], "role": "client" },
+
+Both are custom tests. They come from Intel fec-operator images.  On perf198, it will not pass with more than 4 cells.
+This is for comparing with ACC100 (../TIMER-FEC) which can pass 12 cells.

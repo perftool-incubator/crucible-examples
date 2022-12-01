@@ -1,0 +1,6 @@
+"volumes": [
+ { "name": "hugepage", "emptyDir": { "medium": "HugePages" } },
+ { "name": "varrun", "emptyDir": {} },
+ { "name": "opt", "hostPath": { "path": "/opt/" } }
+]
+

@@ -1,0 +1,5 @@
+"volumes": [
+ { "name": "hugepage", "emptyDir": { "medium": "HugePages" } },
+ { "name": "varrun", "emptyDir": {} }
+]
+
