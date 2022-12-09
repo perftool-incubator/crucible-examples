@@ -1,0 +1,11 @@
+v22.03
+-----
+Status:
+PASS: { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/custom/12-cells-test.cfg"], "role": "client" },
+FAIL: { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/cascade_lake-sp/clxsp_mu0_20mhz_4x4_hton.cfg"], "role": "client" },
+
+      Debug note: segv at FD_12225. On perf198 SNO with ACC100
+
+These two tests look similar.
+  12-cells-test.cfg - this test comes from intel fec-operator test image. It is a custom test.
+  clxsp_mu0_20mhz_4x4_hton.cfg - this test comes from the flexran distribution.

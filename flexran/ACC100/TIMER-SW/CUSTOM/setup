@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# This script is invoked by flexran-infra. 
+#  
+# Env:
+#   This script runs on the engine, part of the rickshaw's "infra" handler  
+# Relates:
+#  richshaw's "pre-script" works in conjunction with "files-from-controller" to copy
+#  the engine-infra:$vals directory to the engine.
+#      { "arg": "engine-infra", "vals": [ "CUSTOM" ], "role": "client" },
+#
+# When this script runs, it moves testmac custom configs in CUSTOM dir
+# to their final location.
+#
+
+DESTINATION=/opt/flexran/bin/nr5g/gnb/testmac/custom/
+if [ -d "DESTINATION" ]; then
+    rm -fr $DESTINATION
+fi
+mkdir $DESTINATION
+cp ./* $DESTINATION
+#cp  ./*-test.cfg /opt/flexran/bin/nr5g/gnb/testmac/custom
+
