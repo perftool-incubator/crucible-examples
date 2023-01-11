@@ -15,6 +15,7 @@
                 { "arg": "duration", "vals": ["360"], "role": "client" },
                 { "arg": "cc-num", "vals": [ "12" ], "role": "server" },
                 { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "oru-dir",   "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/oru"], "role": "server" },
                 { "arg": "log-test", "vals": ["FD_12220"], "role": "client" }
             ]
         }
