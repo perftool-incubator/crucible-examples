@@ -12,9 +12,10 @@
         {
             "include": "common-params",
             "params": [
-                { "arg": "max-runtime", "vals": ["180"], "role": "client" },
+                { "arg": "duration", "vals": ["180"], "role": "client" },
                 { "arg": "engine-infra", "vals": ["CUSTOM"], "role": "client" },
                 { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/6-cells-testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "oru-dir",   "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/oru"], "role": "server" },
                 { "arg": "cc-num", "vals": [ "6" ], "role": "server" },
                 { "arg": "log-test", "vals": ["FD_6220"], "role": "client" }
             ]
