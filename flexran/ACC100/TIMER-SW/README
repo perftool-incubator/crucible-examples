@@ -6,3 +6,11 @@ PASS: { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/testmac/custom/4
 
 Both are custom tests. They come from Intel fec-operator images.  On perf198, it will not pass with more than 4 cells.
 This is for comparing with ACC100 (../TIMER-FEC) which can pass 12 cells.
+
+v22.03 compiled with oneAPI
+-------------------------
+May fail both
+cru*1.log has:
+   Previous UL list is not completed CellId[0] Subframe[1321] PrevSubframe[1319] SfIdx[321] Ctx[1] gMySfn[1321]
+
+This indicates FlexRAN was not been able to keep up.
