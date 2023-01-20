@@ -22,22 +22,15 @@ limitations and/or extra prerequisites.
 	As mentioned above, a FlexRAN release comes with S/W in source. One must have a mean (Intel contact) to obtain a FlexRAN release.
 In addition, to compile FlexRAN, one must use the ICC compiler which requires a license itself. Hence the artifacts of the build
 are not public deliverables. Because of these unsettling issues, we keep the FlexRAN build process out of crucible workshop.
+    See https://github.com/HughNhan/FlexRAN-utils for more details.
 
 2. Setup the OCP cluster to host FlexRAN
 
 	Currently, crucible FlexRAN benchmark only supports k8s endpoint type. This purely is a requirement call.
 
-	FlexRAN can run  w/o a h/w assisted FEC device, but this mode has no usefulness for our purposes. Hence the first
-thing to do is to install and configure your h/w-assisted FEC device by following the instructions in the release.
-
-3. Prepare the worker node
-
-	Next, copy FlexRAN build contents to worker node. Note that this step prepares the worker node
-for the container to mount and get access to the FlexRAN build blob.  This strategy is not a requirement, but a measure
-to overcome the size (100GB) of the build blob which significant slows down the container image build/push/pull.
-
-	The build process in step 1 produces a flexran blob comprised of 3 directories: ./flexran, ./intel and ./dpdk-<version>
-	Copy (scp) these 3 directories to the worker node's /opt
+	FlexRAN can run w/o a h/w assisted FEC device.
+    See https://github.com/perftool-incubator/bench-flexran/tree/main/script-dir for the complete set of scripts 
+    to provision the work node and SNO, and the RU to run FLEXRAN timer and XRAN tests.
 
 ## How to run FlexRAN benchmark
 
@@ -105,31 +98,33 @@ To synthesize manual-mode:
 To synthesize a script-mode run:
 
             "params": [
+                { "arg": "duration", "vals": ["60"], "role": "client" },
                 { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
                 { "arg": "test-file", "vals": ["/opt/flexran/tests/nr5g/fd/testmac_fd_mu0_5mhz.cfg"], "role": "client" },
                 { "arg": "log-test", "vals": ["FD_12001"], "role": "client" }
             ]
 
 - vals is an array. For each value in the array, crucible orchestratrates one test iteration.
-
+- duration: is optional. It specifies the maximum duration the test may take. It helps the benchmark to timeout more precisely. This param is applicable per individual test.
 - fec-mode: valid values are "hw" and "sw" - As mentioned previously, flexran can run with or w/o FEC hardware. When fec-mode value is "sw", the L1 invokes its s/w-emulated method to perform the FEC function. W/o a working h/w FEC device, be sure to only use "sw".
 
 - 'useN' and 'test-file' support manual-mode and script-mode accordingly.
 
 - log-test: when we invoke 'runall' or script mode, "TESTFIEL=xxx ./l2.sh", the benchmark runs multiple tests. Currently the helper script only indexes one metric of one test. The 'log-test' variable specifies that test. The valid values for log-test are the test names i.e FD_1001.
     
-For XRAN, it needs one additional param, the *xran-devices*:
+For XRAN, it needs several additional params:
 
             "params": [
-                { "arg": "fec-mode", "vals": ["hw"], "role": "client" },
-                { "arg": "max-runtime", "vals": ["60"], "role": "client" },
                 { "arg": "xran-devices", "vals": [ "0000:4b:02.0,0000:4b:02.1" ], "role": "client" },
                 { "arg": "test-file", "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/gnb/testmac_clxsp_mu0_20mhz_hton_oru.cfg"], "role": "client" },
+                { "arg": "cc-num", "vals": [ "12" ], "role": "server" },
+                { "arg": "oru-dir",   "vals": ["/opt/flexran/bin/nr5g/gnb/l1/orancfg/sub3_mu0_20mhz_4x4/oru"], "role": "server" },
                 { "arg": "log-test", "vals": ["FD_1001"], "role": "client" }
             ]
-- xran-devices: contain the PCI addresses of two SRIOV VF devices that are used for fronthaul.
-- max-runtime: is optional. It specifies the maximum duration the test may take. It helps the benchmark to timeout more precisely. This param is applicable per individual test.
-
+- xran-devices: contain the PCI addresses of two SRIOV VF devices that are used for fronthaul. Use lspci to locate them.
+- test-file: the XRAN test spec
+- cc-num: this params is for the RU/server. It contains the number of cell cites corresponding to the test spec'ed by test-file
+- oru-dir: this params is for the RU/server, It points the RU config file for the test spec;ed by test-file
  
 # Crucible Run Results
 
