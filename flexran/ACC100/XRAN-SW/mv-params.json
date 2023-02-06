@@ -4,7 +4,8 @@
             "name": "common-params",
             "params": [
                 { "arg": "fec-mode", "vals": ["sw"], "role": "client" },
-                { "arg": "xran-devices", "vals": [ "0000:4b:0a.0,0000:4b:0a.1" ], "role": "all" }
+                { "arg": "xran-devices", "vals": ["PCIDEVICE_OPENSHIFT_IO_FLEXRAN_FRONTHAUL"], "role": "client" },
+                { "arg": "xran-devices", "vals": ["ens8f1"], "role": "server" }
             ]
         }
     ],
