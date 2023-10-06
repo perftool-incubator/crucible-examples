@@ -128,8 +128,8 @@
     }
   ],
   "run-params": {
-    "num-samples": "3",
-    "max-sample-failures": "3",
+    "num-samples": 3,
+    "max-sample-failures": 3,
     "test-order": "r"
   }
 }
