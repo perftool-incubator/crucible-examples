@@ -5,7 +5,8 @@ This simplifies user input and configuration in one single place, and
 therefore, enables users to run benchmarks in Crucible by configuring
 all the aspects of the test in the same JSON file. For example, to test
 `oslat` with Crucible using one single JSON config, run:
-``
+
+```
 crucible run --from-file oslat-k8s-runfile.json
 ```
 
@@ -28,8 +29,8 @@ where:
  - `mv-params`: benchmark specific params
  - `tool-params`: performance tool params, e.g. perf, sysstat, procstat, etc.
  - `tags`: tags to identify the test run in the form of "key":"value"
- - 'endpoints`: endpoint definitions and configuration settings
- - 'run-params`: addtional (optional) command line params, e.g. number of samples
+ - `endpoints`: endpoint definitions and configuration settings
+ - `run-params`: addtional (optional) command line params, e.g. number of samples
 
 The general schema can be found at:
 https://github.com/perftool-incubator/rickshaw/blob/master/util/JSON/schema.json
