@@ -42,7 +42,7 @@ nodeSelector:server-23+24+29:$pwd/nodeSelector-worker001.json,\
 nodeSelector:server-1-20+21-22+25-26+27+30+31-32:$pwd/nodeSelector-worker002.json,\
 userenv:stream8,\
 resources:default:$pwd/resource-2req.json,\
-resources:server:1-20:$pwd/resource-1req.json.json,\
-resources:client:15-20:$pwd/resource-1req.json.json,\
+resources:server-1-20:$pwd/resource-1req.json.json,\
+resources:client-15-20:$pwd/resource-1req.json.json,\
 client:1-32,\
 server:1-32
