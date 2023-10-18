@@ -36,10 +36,10 @@ crucible run iperf,uperf\
  --endpoint k8s,user:kni,host:$ocp_host,\
 nodeSelector:client-1-7+21-22+27:$pwd/nodeSelector-worker000.json,\
 nodeSelector:client-8-14+30:$pwd/nodeSelector-worker001.json,\
-nodeSelector:client-15-22+25-26:$pwd/nodeSelector-worker002.json,\
-nodeSelector:server-1-20+21-22+25+26+27+30+31+32:$pwd/nodeSelector-worker002.json,\
+nodeSelector:client-5-20+23-24+25-26+28-29+31-32:$pwd/nodeSelector-worker002.json,\
 nodeSelector:server-28:$pwd/nodeSelector-worker000.json,\
 nodeSelector:server-23+24+29:$pwd/nodeSelector-worker001.json,\
+nodeSelector:server-1-20+21-22+25-26+27+30+31-32:$pwd/nodeSelector-worker002.json,\
 userenv:stream8,\
 resources:default:$pwd/resource-2req.json,\
 resources:server:1-20:$pwd/resource-1req.json.json,\
