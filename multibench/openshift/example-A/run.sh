@@ -33,16 +33,16 @@ crucible run iperf,uperf\
  --bench-ids iperf:21-26,uperf:1-20,uperf:27-32\
  --tags $tags\
  --num-samples=$num_samples --max-sample-failures=2\
- --endpoint k8s,user:kni,host:$ocp_host,\
-nodeSelector:client-1-7+21-22+27:$pwd/nodeSelector-worker000.json,\
-nodeSelector:client-8-14+30:$pwd/nodeSelector-worker001.json,\
-nodeSelector:client-15-20+23-24+25-26+28-29+31-32:$pwd/nodeSelector-worker002.json,\
-nodeSelector:server-28:$pwd/nodeSelector-worker000.json,\
-nodeSelector:server-23+24+29:$pwd/nodeSelector-worker001.json,\
-nodeSelector:server-1-20+21-22+25-26+27+30+31-32:$pwd/nodeSelector-worker002.json,\
+ --endpoint k8s,user:root,host:$ocp_host,\
+nodeSelector:client-1-7+21-22+27:$pwd/nodeSelector-worker0.json,\
+nodeSelector:client-8-14+30:$pwd/nodeSelector-worker1.json,\
+nodeSelector:client-15-20+23-24+25-26+28-29+31-32:$pwd/nodeSelector-worker2.json,\
+nodeSelector:server-28:$pwd/nodeSelector-worker0.json,\
+nodeSelector:server-23+24+29:$pwd/nodeSelector-worker1.json,\
+nodeSelector:server-1-20+21-22+25-26+27+30+31-32:$pwd/nodeSelector-worker2.json,\
 userenv:stream8,\
 resources:default:$pwd/resource-2req.json,\
-resources:server-1-20:$pwd/resource-1req.json.json,\
-resources:client-15-20:$pwd/resource-1req.json.json,\
+resources:server-1-20:$pwd/resource-1req.json,\
+resources:client-15-20:$pwd/resource-1req.json,\
 client:1-32,\
 server:1-32
