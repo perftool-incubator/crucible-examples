@@ -120,11 +120,24 @@
   },
   "endpoints": [
     {
-      "type": "remotehost",
-      "host": "foo.example.com",
-      "user": "root",
-      "client": "1",
-      "userenv": "rhubi8"
+      "type": "remotehosts",
+      "settings": {
+        "user": "root",
+        "userenv": "rhubi8"
+      },
+      "remotes": [
+        {
+          "engines": [
+            { "role": "client", "ids": [ 1 ] }
+          ],
+          "config": {
+            "host": "foo.example.com",
+            "settings": {
+              "osruntime": "podman"
+            }
+          }
+        }
+      ]
     }
   ],
   "run-params": {

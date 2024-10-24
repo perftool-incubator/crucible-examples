@@ -41,9 +41,9 @@ function replace_value() {
     mv fio.json.tmp fio.json
 }
 
-replace_value string remote_host ${remote_host} '."endpoints"[0]."host" = $remote_host'
+replace_value string remote_host ${remote_host} '."endpoints"[0]."remotes"[0]."config"."host" = $remote_host'
 
-replace_value string userenv ${userenv} '."endpoints"[0]."userenv" = $userenv'
+replace_value string userenv ${userenv} '."endpoints"[0]."settings"."userenv" = $userenv'
 
 replace_value int samples ${samples} '."run-params"."num-samples" = $samples'
 
