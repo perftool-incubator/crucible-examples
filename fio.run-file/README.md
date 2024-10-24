@@ -8,15 +8,15 @@ Included are the files required to run crucible.  They are:
 
 This 'run-file' contains all of the necessary information to run a
 complex (multi-iteration, multi-sample) set of fio benchmarks on a
-'remotehost' endpoint (ie. a Linux box).
+'remotehosts' endpoint (ie. a Linux box).
 
 ### run.sh
 
 This file shows how a 'crucible run' command is used to run fio on a
-remotehost endpoint.  At the top of the file are a few values the user
-can change in order to direct where the test should be run and modify
-some aspects of it's behavior such as sample count and userenv (the
-userenv is the base Linux container that is used to build the run
+remotehosts endpoint.  At the top of the file are a few values the
+user can change in order to direct where the test should be run and
+modify some aspects of it's behavior such as sample count and userenv
+(the userenv is the base Linux container that is used to build the run
 environment where fio will execute).
 
 ## Running the fio benchmark with Crucible
