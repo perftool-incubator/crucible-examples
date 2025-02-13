@@ -1,0 +1,60 @@
+{
+    "benchmarks": [
+        {
+            "name": "osnoise",
+            "ids": "1",
+            "mv-params": {
+                "global-options": [
+                    {
+                        "name": "global",
+                        "params": [
+                            { "arg": "duration", "vals": [ "10" ], "role": "client" },
+                            { "arg": "smt", "vals": [ "off" ], "role": "client" },
+                            { "arg": "priority", "vals": [ "f:2" ], "role": "client" }
+                        ]
+                    }
+                ],
+                "sets": [
+                    {
+                        "include": "global",
+                        "params": [
+                            { "arg": "house-keeping", "vals": [ "2" ], "role": "client" },
+                            { "arg": "cpus", "vals": [ "3-31" ], "role": "client" },
+                            { "arg": "warm-up", "vals": [ "5" ], "role": "client" }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "tool-params": [
+    ],
+    "tags": {
+        "tuned": "cpu-partitioning"
+    },
+    "endpoints": [
+        {
+            "type": "remotehosts",
+            "settings": {
+                "osruntime": "chroot"
+            },
+            "remotes": [
+                {
+                    "engines": [
+                        { "role": "client", "ids": "1" }
+                    ],
+                    "config": {
+                        "host": "hostname.domain.com",
+                        "settings": {
+                            "cpu-partitioning": true
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "run-params": {
+        "num-samples": 1,
+        "max-sample-failures": 1
+    }
+}
