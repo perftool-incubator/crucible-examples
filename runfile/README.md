@@ -1,15 +1,24 @@
-# Config runfile aka all-in-one
-The config run-file, or all-in-one, is the JSON config file that rules
-the entire test, including benchmark parameters, endpoints, tools, etc.
-This simplifies user input and configuration in one single place, and
-therefore, enables users to run benchmarks in Crucible by configuring
-all the aspects of the test in the same JSON file. For example, to test
-`oslat` with Crucible using one single JSON config, run:
+# Crucible runfile
+The Crucible configuration runfile (a.k.a "all-in-one JSON file", is
+the JSON config file that rules the entire test, including benchmark
+parameters, endpoints, tools, etc. This simplifies user input and
+configuration in one single place, and therefore, enables users to
+run benchmarks in Crucible by configuring all the aspects of the test
+in the same JSON file. For example, to test `oslat` with Crucible
+using one single JSON config, run:
 
 ```
 crucible run --from-file oslat-k8s-runfile.json
 ```
 
+## Naming standards
+When adding examples to this directory, create the benchmark sub-dir
+(if it does not exist) and Name the Crucible runfile as follows:
+    `<benchmark-name>`/`<benchmark-name>`-`<endpoint>`-runfile.json
+For example:
+    `oslat`/`oslat`-`remotehosts`-runfile.json
+
+## JSON schema
 The config runfile structure is the following:
 ```
 {
@@ -57,3 +66,4 @@ import blockbreaker
 ```
 
 By importing blockbreaker you can manipulate the runfile JSON whenever you need.
+
