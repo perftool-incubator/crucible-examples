@@ -1,0 +1,108 @@
+{
+    "benchmarks": [
+        {
+            "name": "oslat",
+            "ids": "1",
+            "mv-params": {
+                "global-options": [
+                    {
+                        "name": "global",
+                        "params": [
+                            { "arg": "duration", "vals": [ "10" ], "role": "client" },
+                            { "arg": "no-load-balance", "vals": [ "1" ], "role": "client", "enabled": "no" },
+                            { "arg": "cpu-main-thread", "vals": [ "2" ], "role": "client", "enabled": "yes" },
+                            { "arg": "cpu-list", "vals": [ "3-31" ], "role": "client", "enabled": "yes" },
+                            { "arg": "smt", "vals": [ "off" ], "role": "client" },
+                            { "arg": "stress-ng-tiles-per-cpu", "vals": [ "1" ], "role": "server", "enabled": "yes" },
+                            { "arg": "sysinfo-test", "vals": [ "yes" ], "role": "server", "enabled": "no" },
+                            { "arg": "network-connections", "vals": [ "500" ], "role": "server", "enabled": "no" },
+                            { "arg": "rtprio", "vals": [ "2" ], "role": "client", "enabled": "no" },
+                            { "arg": "trace-control", "vals": [ "1" ], "role": "client", "enabled": "no" },
+                            { "arg": "trace-markers", "vals": [ "1" ], "role": "client", "enabled": "no" }
+                        ]
+                    }
+                ],
+                "sets": [
+                    {
+                        "include": "global",
+                        "params": [
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "tool-params": [
+        {
+            "tool": "rt-trace-bpf",
+            "enabled": "no",
+            "params": [
+                { "arg": "cpu-list", "val": "8" }
+	    ]
+        },
+        {
+            "tool": "kernel",
+            "enabled": "no",
+            "params": [
+                { "arg": "subtools", "val": "sysfs-trace" },
+
+                { "arg": "sysfs-trace-setup", "val": "echo fffffffc > tracing_cpumask" },
+                { "arg": "sysfs-trace-setup", "val": "echo 1048576 > buffer_size_kb" },
+                { "arg": "sysfs-trace-setup", "val": "echo function_graph > current_tracer" },
+                { "arg": "sysfs-trace-setup", "val": "echo 0 > max_graph_depth" },
+                { "arg": "sysfs-trace-setup", "val": "echo *:* > set_event" },
+                { "arg": "sysfs-trace-setup", "val": "echo 1 > options/funcgraph-abstime" },
+                { "arg": "sysfs-trace-setup", "val": "echo 1 > options/funcgraph-proc" },
+                { "arg": "sysfs-trace-setup", "val": "echo 1 > options/latency-format" },
+                { "arg": "sysfs-trace-setup", "val": "echo 1 > options/funcgraph-tail" },
+
+                { "arg": "sysfs-trace-cleanup", "val": "echo ffffffff > tracing_cpumask" },
+                { "arg": "sysfs-trace-cleanup", "val": "echo 0 > options/funcgraph-abstime" },
+                { "arg": "sysfs-trace-cleanup", "val": "echo 0 > options/funcgraph-proc" },
+                { "arg": "sysfs-trace-cleanup", "val": "echo 0 > options/latency-format" },
+                { "arg": "sysfs-trace-cleanup", "val": "echo 0 > options/funcgraph-tail" },
+
+                { "arg": "sysfs-trace-collection", "val": "per-cpu" }
+            ]
+        }
+    ],
+    "tags": {
+	"tuned": "cpu-partitioning",
+	"sched_rt_runtime_us": "950000",
+	"scaling_freq": "3400MHz",
+        "energy_preference": "performance"
+    },
+    "endpoints": [
+        {
+            "type": "remotehosts",
+            "settings": {
+                "osruntime": "chroot"
+            },
+            "remotes": [
+                {
+                    "engines": [
+                        { "role": "client", "ids": "1" }
+                    ],
+                    "config": {
+                        "host": "example.com",
+                        "settings": {
+                            "cpu-partitioning": true
+                        }
+                    }
+                },
+                {
+                    "engines": [
+                        { "role": "server", "ids": "1" }
+                    ],
+                    "config": {
+                        "host": "example.com"
+                    }
+                }
+            ]
+        }
+    ],
+    "run-params": {
+        "num-samples": 1,
+        "max-sample-failures": 1
+    }
+}
