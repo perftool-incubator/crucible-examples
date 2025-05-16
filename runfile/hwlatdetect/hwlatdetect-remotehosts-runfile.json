@@ -1,0 +1,57 @@
+{
+    "benchmarks": [
+        {
+            "name": "hwlatdetect",
+            "ids": "1",
+            "mv-params": {
+                "global-options": [
+                    {
+                        "name": "global",
+                        "params": [
+                            { "arg": "duration", "vals": [ "28800" ], "role": "client" },
+                            { "arg": "threshold", "vals": [ "1us" ], "role": "client", "enabled": "yes" },
+                            { "arg": "width", "vals": [ "950000" ], "role": "client", "enabled": "yes" },
+                            { "arg": "cpulist", "vals": [ "2-63,66-127" ], "role": "client", "enabled": "yes" }
+                        ]
+                    }
+                ],
+                "sets": [
+                    {
+                        "include": "global",
+                        "params": [
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "tool-params": [
+    ],
+    "tags": {
+    },
+    "endpoints": [
+        {
+            "type": "remotehosts",
+            "settings": {
+                "osruntime": "chroot"
+            },
+            "remotes": [
+		{
+                    "engines": [
+                        { "role": "client", "ids": "1" }
+                    ],
+                    "config": {
+                        "host": "example.com",
+                        "settings": {
+                            "cpu-partitioning": true
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "run-params": {
+        "num-samples": 1,
+        "max-sample-failures": 1
+    }
+}
