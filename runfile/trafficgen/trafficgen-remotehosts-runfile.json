@@ -1,0 +1,106 @@
+{
+  "tags": {
+  },
+  "endpoints": [
+    {
+      "type": "remotehosts",
+      "settings": {
+        "user": "root"
+      },
+      "remotes": [
+        {
+          "engines": [
+            { "role": "client", "ids": [ 1 ] }
+          ],
+          "config": {
+            "host": "client-host.com",
+            "settings": {
+              "cpu-partitioning": true,
+	      "userenv": "alma8",
+	      "osruntime": "chroot"
+            }
+          }
+        },
+        {
+          "engines": [
+            { "role": "server", "ids": [ 1 ] }
+          ],
+          "config": {
+            "host": "server-host.com",
+            "settings": {
+              "cpu-partitioning": true,
+	      "userenv": "alma8",
+	      "osruntime": "chroot"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "run-params": {
+    "num-samples": 1,
+    "max-sample-failures": 1,
+    "test-order": "r"
+  },
+  "tool-params": [
+    { "tool": "sysstat" },
+    { "tool": "procstat" }
+  ],
+  "benchmarks": [
+    {
+      "name": "trafficgen",
+      "ids": "1",
+      "mv-params": {
+        "global-options": [
+	      {
+	        "name": "global",
+	        "params": [
+		        { "arg": "trex-software-mode", "vals": [ "off" ], "role": "client", "enabled": "yes" },
+		        { "arg": "trex-mellanox-support", "vals": [ "off" ], "role": "client", "enabled": "yes" },
+		        { "arg": "trex-devices", "vals": [ "0000:0a:00.0,0000:0a:00.1,0000:2f:00.0,0000:2f:00.1,0000:8a:00.0,0000:8a:00.1,0000:99:00.0,0000:99:00.1" ], "role": "client", "enabled": "yes" },
+		        { "arg": "trex-active-devices", "vals": [ "0000:0a:00.0,0000:0a:00.1,0000:2f:00.0,0000:2f:00.1,0000:8a:00.0,0000:8a:00.1,0000:99:00.0,0000:99:00.1" ], "role": "client", "enabled": "yes" },
+                        { "arg": "trex-mem-limit", "vals": [ "8192" ], "role": "client", "enabled": "yes" },
+		        { "arg": "sniff-runtime", "vals": [ "30" ], "role": "client", "enabled": "yes" },
+		        { "arg": "search-runtime", "vals": [ "120" ], "role": "client" },
+		        { "arg": "validation-runtime", "vals": [ "300" ], "role": "client", "enabled": "yes" },
+		        { "arg": "max-loss-pct", "vals": [ "0.000001" ], "role": "client" },
+		        { "arg": "one-shot", "vals": [ "0" ], "role": "client" },
+		        { "arg": "rate-unit", "vals": [ "mpps" ], "role": "client" },
+		        { "arg": "rate", "vals": [ "2" ], "role": "client" },
+                        { "arg": "rate-tolerance-failure", "vals": [ "fail" ], "role": "client" },
+                        { "arg": "duplicate-packet-failure", "vals": [ "fail" ], "role": "client" },
+		        { "arg": "send-teaching-warmup", "vals": [ "ON" ], "role": "client", "enabled": "yes" },
+		        { "arg": "teaching-warmup-packet-type", "vals": [ "generic" ], "role": "client", "enabled": "yes" },
+			{ "arg": "warmup-trial", "vals": [ "ON" ], "role": "client", "enabled": "yes" },
+			{ "arg": "warmup-trial-runtime", "vals": [ "90" ], "role": "client", "enabled": "yes" },
+		        { "arg": "server-devices", "vals": [ "0000:2f:00.0,0000:2f:00.1" ], "role": "server", "enabled": "yes" },
+			{ "arg": "switch-type", "vals": [ "testpmd" ], "role": "server", "enabled": "yes" },
+		        { "arg": "testpmd-forward-mode", "vals": [ "io" ], "role": "server", "enabled": "yes" },
+			{ "arg": "testpmd-queues", "vals": [ "1" ], "role": "server" },
+			{ "arg": "testpmd-smt", "vals": [ "off" ], "role": "server" },
+			{ "arg": "testpmd-mtu", "vals": [ "9216" ], "role": "server", "enabled": "yes" },
+                        { "arg": "testpmd-descriptors", "vals": [ "4096" ], "role": "server", "enabled": "yes" }
+	        ]
+	      }
+        ],
+        "sets": [
+	      {
+	        "enabled": "yes",
+	        "include": "global",
+	        "params": [
+		        { "arg": "use-src-mac-flows", "vals": [ "1" ], "role": "client", "enabled": "yes" },
+		        { "arg": "use-dst-mac-flows", "vals": [ "1" ], "role": "client", "enabled": "yes" },
+		        { "arg": "use-src-ip-flows", "vals": [ "1" ], "role": "client", "enabled": "yes" },
+		        { "arg": "use-dst-ip-flows", "vals": [ "1" ], "role": "client", "enabled": "yes" },
+		        { "arg": "use-src-port-flows", "vals": [ "0" ], "role": "client", "enabled": "yes" },
+		        { "arg": "use-dst-port-flows", "vals": [ "0" ], "role": "client", "enabled": "yes" },
+		        { "arg": "num-flows", "vals": [ "512" ], "role": "client", "enabled": "yes" },
+		        { "arg": "frame-size", "vals": [ "64" ], "role": "client", "enabled": "yes" },
+		        { "arg": "traffic-direction", "vals": [ "bidirectional" ], "role": "client", "enabled": "yes" }
+	        ]
+	      }
+        ]
+      }
+    }
+  ]
+}
