@@ -1,0 +1,81 @@
+{
+  "tags": {
+    "topology": "nosmt",
+    "vendor": "Nvidia",
+    "accelerator": "8xA100",
+    "train_samples": "2500"
+  },
+  "endpoints": [
+    {
+      "type": "remotehosts",
+      "remotes": [
+        {
+          "engines": [ { "role": "client", "ids": "1" } ],
+          "config": {
+            "host": "example.com",
+            "settings": {
+              "userenv": "rhel-ai-ilab-nvidia-official-1.4.1",
+              "osruntime": "podman",
+              "podman-settings": {
+                "device": "nvidia.com/gpu=all",
+                "shm-size": "10.00gb",
+                "pids-limit": "-1"
+              },
+	      "host-mounts": [
+                { "src": "/media", "dest": "/opt/app-root/src/.cache/instructlab" },
+                { "src": "/mnt/dataset", "dest": "/opt/app-root/src/dataset" }
+	      ],
+              "cpu-partitioning": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "run-params": { "num-samples": 1, "max-sample-failures": 1, "test-order": "r" },
+  "tool-params": [
+    { "tool": "sysstat",
+      "params": [
+        { "arg": "subtools", "val": "mpstat,sar,iostat" },
+        { "arg": "interval", "val": "15" }
+      ]
+    },
+    { "tool": "procstat",
+      "params": [
+        { "arg": "interval", "val": "15" }
+      ]
+    },
+    { "tool": "nvidia",
+      "params": [
+        { "arg": "interval", "val": "3" }
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "name": "ilab",
+      "ids": "1",
+      "mv-params": {
+        "sets": [
+          {
+            "enabled": "yes",
+            "params": [
+	      { "arg": "workflow", "vals": [ "train" ] },
+	      { "arg": "train-model-path", "vals": [
+		      "/opt/app-root/src/.cache/instructlab/models/ibm-granite/granite-3.1-8b-instruct"
+	      ], "enabled": "yes" },
+	      { "arg": "train-phased-phase2-data", "vals": [ "/usr/share/instructlab/sdg/datasets/skills.jsonl" ] },
+	      { "arg": "train-phased-phase1-trim-data-samples", "vals": [ "2500" ] },
+              { "arg": "train-phased-phase1-num-epochs", "vals": [ "2" ] },
+	      { "arg": "train-phased-phase1-data", "vals": [ "/opt/app-root/src/dataset/jul19-knowledge-26k.jsonl" ] },
+	      { "arg": "train-phased-phase2-trim-data-samples", "vals": [ "2500" ] },
+              { "arg": "train-phased-phase2-num-epochs", "vals": [ "2" ] },
+	      { "arg": "profile-vendor", "vals": [ "nvidia" ] },
+              { "arg": "profile-name", "vals": [ "a100/a100_x8" ] }
+	    ]
+          }
+	]
+      }
+    }
+  ]
+}
