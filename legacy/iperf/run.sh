@@ -92,7 +92,7 @@ if [ ! -z "$missing_bins" ]; then
 fi
 
 
-# What is below is code to generate the appropriate crucible command to tun your test.
+# What is below is code to generate the appropriate crucible command to run your test.
 # There is a ton of duplicated code that needs to be consolidated.
 
 if [ ! -z "$annotations" ]; then
@@ -100,7 +100,7 @@ if [ ! -z "$annotations" ]; then
         echo "Using annotations: $annotations"
         anno_opt=",annotations:default:$annotations"
     else
-        echo "Annoations file missing: $annotations"
+        echo "Annotations file missing: $annotations"
         exit
     fi
 else

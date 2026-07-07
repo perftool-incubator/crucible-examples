@@ -187,7 +187,7 @@ Available breakouts:  cmd,csid,cstype,job
     fio iops   27014.79
 ```
 
-Crucible metric reporting is done by aggregating all of the various components that in scope of the query.  The query engine supports the use of breakouts to disect the aggregated metrics should the user desire it.  More on that below.
+Crucible metric reporting is done by aggregating all of the various components that are in scope of the query.  The query engine supports the use of breakouts to dissect the aggregated metrics should the user desire it.  More on that below.
 
 ### Getting additional metrics
 

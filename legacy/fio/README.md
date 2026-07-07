@@ -13,9 +13,9 @@ iteration.
 
 In this example there are two different iterations defined with
 multiple block sizes to test for each.  Each iteration performs a
-different kind of non-destructive read test (seequential and random)
+different kind of non-destructive read test (sequential and random)
 for all defined block sizes in that iteration.  In total there are 5
-differnt iterations to run.
+different iterations to run.
 
 ### tool-params.json
 
@@ -209,7 +209,7 @@ Checking for elasticsearch...appears to be running
 }
 ```
 
-Crucible metric reporting is done by aggregating all of the various components that in scope of the query.  The query engine supports the use of breakouts to disect the aggregated metrics should the user desire it.  More on that below.
+Crucible metric reporting is done by aggregating all of the various components that are in scope of the query.  The query engine supports the use of breakouts to dissect the aggregated metrics should the user desire it.  More on that below.
 
 ### Getting additional metrics
 

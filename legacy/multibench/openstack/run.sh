@@ -26,8 +26,8 @@ crucible run iperf,uperf\
  --num-samples=$samples --max-sample-failures=3\
  --endpoint osp,host:${remote_host},user:stack,\
 flavor:default:tiny,\
-flavor:server-21-26:tiny,\
-flavor:client-21-26:tiny,\
+flavor:server-1-20:tiny,\
+flavor:client-1-20:tiny,\
 availability-zone:client-1-5+11+13+15+17+18:nova:$compute_0.localdomain,\
 availability-zone:client-6-10+12+14:nova:$compute_1.localdomain,\
 availability-zone:client-16+19+20:nova:$compute_2.localdomain,\

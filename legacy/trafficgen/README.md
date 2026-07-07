@@ -20,7 +20,7 @@ Memory request and limit should also have a matching value (like 2048M).
 
 ###  annotations.json
 In this file you specify the k8s network to be used and advanced options like
-disabling IRQs on the cpus associated to the adapater.
+disabling IRQs on the cpus associated to the adapter.
 
 ### securityContext.json
 A security context defines privilege and access control settings for a Pod or

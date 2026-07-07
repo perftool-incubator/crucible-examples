@@ -22,8 +22,8 @@ For example:
 The config runfile structure is the following:
 ```
 {
-    "benchmarks": {
-    },
+    "benchmarks": [
+    ],
     "tool-params": [
     ],
     "tags": {
@@ -39,7 +39,7 @@ where:
  - `tool-params`: performance tool params, e.g. perf, sysstat, procstat, etc.
  - `tags`: tags to identify the test run in the form of "key":"value"
  - `endpoints`: endpoint definitions and configuration settings
- - `run-params`: addtional (optional) command line params, e.g. number of samples
+ - `run-params`: additional (optional) command line params, e.g. number of samples
 
 The general schema can be found at:
 https://github.com/perftool-incubator/rickshaw/blob/master/util/JSON/schema.json
@@ -52,7 +52,7 @@ The blockbreaker utility can be used to validate configs and extract parts from 
 JSON config run-file:  
   https://github.com/perftool-incubator/rickshaw/tree/master/util#readme
 
-To exctract the `mv-params` block, run:
+To extract the `mv-params` block, run:
 ```
 python3 blockbreaker.py --json run-file.json --config mv-params
 ```
@@ -66,4 +66,3 @@ import blockbreaker
 ```
 
 By importing blockbreaker you can manipulate the runfile JSON whenever you need.
-

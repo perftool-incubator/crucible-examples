@@ -2,7 +2,7 @@
 ## Glossary
 * **metric** - the tool or benchmark that gathered data
 * **metric type** - transactions, throughput, etc
-* **iteration** - a uniqe set of benchmark parameters
+* **iteration** - a unique set of benchmark parameters
 * **sample** - a re-run of an iteration for greater statistical confidence
 * **cstype** - a worker, master, client, or server. initially was short for client server type. but with workers and masters the name is ill fitting
 * **csid** - the id of the cstype, worker-1 for example
@@ -32,4 +32,3 @@ will return a value, but also provides `breakouts`, which can be thought of as m
 
 * use `--resolution=90` to get the desired number of samples from the run. just like a picture you can only enhance so far before it doesn't get any clearer. try a resolution that matches the duration of a test
 * `crucible get metric --run <RUN-ID> --begin <start> --end <final_time> --source mpstat --type Busy-CPU --breakout cstype,csid --resolution 60`
-

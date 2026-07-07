@@ -42,5 +42,4 @@ periodRange: {"begin":1616166665744,"end":1616166695808}
       result: (wakeup-latency-usec) samples: 6.00 mean: 6.00 stddev: 0.00 stddevpct: 0.00
 ```
 
-The primary metric, wakeup-latency-usec, is the maximum wakeup latency from all CPUs used in the test.  Currently the minimum, average, and maximum latency, per-cpu, is not captured in the results (but it will be with a later update).  To see the raw results from cyclictest, go to /var/lib/crucible/run/latest/run/interation, and there will be interation and sample directories under there with 'histogram.txt' file from cyclictest.
-
+The primary metric, wakeup-latency-usec, is the maximum wakeup latency from all CPUs used in the test.  Currently the minimum, average, and maximum latency, per-cpu, is not captured in the results (but it will be with a later update).  To see the raw results from cyclictest, go to /var/lib/crucible/run/latest/run/iteration, and there will be iteration and sample directories under there with 'histogram.txt' file from cyclictest.
