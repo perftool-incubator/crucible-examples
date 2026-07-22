@@ -122,7 +122,7 @@ for num_pods in $scale_up_factor; do
         workers=(`jq -r '.items[] | .metadata.labels | select(."node-role.kubernetes.io/worker" != null) | ."kubernetes.io/hostname"' nodes.json | tr '\n' ' '`)
         first_worker=`echo ${workers[0]}`
         if [ -z "$first_worker" ]; then
-            "First worker not defined, exiting"
+            echo "First worker not defined, exiting"
             exit 1
         fi
         if [ "$topo" == "internode" ]; then
@@ -236,11 +236,11 @@ for num_pods in $scale_up_factor; do
     if [ "$topo" == "interhost" ]; then
         tags+=",dir:$interhost_dir"
     fi
-    if [ "$topo" == "internode" -a "$topo" == "intranode" ]; then
+    if [ "$topo" == "internode" -o "$topo" == "intranode" ]; then
         tags+=",pod_qos:$pod_qos"
     fi
     if [ ! -z "$other_tags" ]; then
-        tags+="other_tags"
+        tags+=",$other_tags"
     fi
     time crucible run uperf --tags $tags --mv-params $params_file --num-samples=$samples --max-sample-failures=$max_failures $endpoint_opt
     date
